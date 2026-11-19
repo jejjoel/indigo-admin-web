@@ -46,7 +46,7 @@ export default function AdminHeader() {
               </span>
             </div>
             <p className="text-[10px] text-gray-400 -mt-0.5 hidden sm:block">
-              Curation &amp; Mentor Evaluation Portal
+              Curation &amp; Intake Management Portal
             </p>
           </div>
         </Link>

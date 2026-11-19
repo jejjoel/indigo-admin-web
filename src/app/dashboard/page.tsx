@@ -122,7 +122,7 @@ export default function AdminDashboardPage() {
               <Eye className="w-4 h-4" />
             </div>
             <p className="text-3xl font-extrabold text-blue-400">{underReview}</p>
-            <p className="text-[11px] text-gray-400 mt-1">Sedang dinilai mentor</p>
+            <p className="text-[11px] text-gray-400 mt-1">Sedang ditinjau kurator</p>
           </div>
 
           <div className="bg-[#141721] border border-[#252b3b] rounded-2xl p-5">

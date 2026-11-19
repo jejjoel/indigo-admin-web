@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
             Indigo Game Admin &amp; Mentor
           </h1>
           <p className="text-xs text-gray-400 mt-1">
-            Masuk untuk mengelola pendaftar, melihat dokumen Pitch Deck privat, dan memberikan skor kurasi.
+            Masuk untuk mengelola pendaftar, melihat dokumen Pitch Deck privat, dan memperbarui status seleksi.
           </p>
         </div>
 

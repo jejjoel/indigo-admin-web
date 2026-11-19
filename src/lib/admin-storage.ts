@@ -390,12 +390,11 @@ function generateFallbackPitchDeckPdf(sub: SubmissionData): Buffer {
   const lines = [
     "INDIGO GAME STARTUP INCUBATION - OFFICIAL PITCH DECK DOCUMENT",
     "-------------------------------------------------------------",
-    `Registration Code : ${clean(sub.registrationCode)}`,
     `Startup Team Name : ${clean(sub.startupName)}`,
     `Company Status    : ${clean(sub.companyStatus)} (${clean(sub.location)})`,
     `Game Director     : ${clean(sub.leaderName)} (${clean(sub.leaderRole)})`,
     `Commitment & Cap  : ${clean(sub.leaderCommitment)} | Captable ${clean(sub.captable)}`,
-    `Contact Email/WA  : ${clean(sub.leaderEmail)} | ${clean(sub.leaderWhatsapp)}`,
+    `Email & WhatsApp  : ${clean(sub.leaderEmail)} | ${clean(sub.leaderWhatsapp)}`,
     `Target Platform   : ${clean(sub.targetPlatform)}`,
     `Dominant Genre    : ${clean(sub.gameGenre)}`,
     `Website / Store   : ${clean(sub.startupWebsite)}`,
