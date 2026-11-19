@@ -63,7 +63,6 @@ export default function AdminSubmissionsPage() {
       !q ||
       item.startupName.toLowerCase().includes(q) ||
       item.leaderName.toLowerCase().includes(q) ||
-      item.registrationCode.toLowerCase().includes(q) ||
       item.gameGenre.toLowerCase().includes(q) ||
       item.location.toLowerCase().includes(q);
     return matchesStatus && matchesPlatform && matchesSearch;
@@ -92,8 +91,7 @@ export default function AdminSubmissionsPage() {
     if (filtered.length === 0) return;
 
     const headers = [
-      "Registration Code",
-      "Created At",
+      "Tanggal Daftar",
       "Status",
       "Startup Name",
       "Company Status",
@@ -114,7 +112,6 @@ export default function AdminSubmissionsPage() {
       "Teaser Video URL",
       "Game Demo URL",
       "Referral Source",
-      "Admin Notes",
     ];
 
     const escapeCsv = (val: unknown) =>
@@ -122,7 +119,6 @@ export default function AdminSubmissionsPage() {
 
     const rows = filtered.map((s) =>
       [
-        s.registrationCode,
         s.createdAt,
         s.status,
         s.startupName,
@@ -144,7 +140,6 @@ export default function AdminSubmissionsPage() {
         s.teaserVideoUrl || "-",
         s.gameDemoUrl || "-",
         s.referralSource,
-        s.adminNotes || "-",
       ]
         .map(escapeCsv)
         .join(",")
@@ -176,7 +171,7 @@ export default function AdminSubmissionsPage() {
               Daftar Pendaftar Game Startup
             </h1>
             <p className="text-xs sm:text-sm text-gray-400">
-              Menampilkan {filtered.length} dari {submissions.length} pendaftaran. Klik &ldquo;Detail &amp; Buka PDF&rdquo; untuk membaca Pitch Deck privat dan memberi nilai.
+              Menampilkan {filtered.length} dari {submissions.length} pendaftaran. Klik &ldquo;Detail &amp; Buka PDF&rdquo; untuk memeriksa berkas dan Pitch Deck pendaftar.
             </p>
           </div>
 
@@ -207,7 +202,7 @@ export default function AdminSubmissionsPage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari Kode Tiket, Nama Studio, Game Director, Genre, atau Kota..."
+              placeholder="Cari Nama Studio, Game Director, Genre, atau Kota..."
               className="w-full bg-[#0b0c10] border border-[#252b3b] rounded-xl pl-9 pr-4 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-[#E71C34]"
             />
             <Search className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
@@ -252,13 +247,13 @@ export default function AdminSubmissionsPage() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-[#0d0f17] border-b border-[#252b3b] text-[11px] font-bold uppercase tracking-wider text-gray-400">
-                  <th className="py-3.5 px-4">Kode Tiket</th>
                   <th className="py-3.5 px-4">Team Game Startup</th>
                   <th className="py-3.5 px-4">Game Director (Leader)</th>
                   <th className="py-3.5 px-4">Genre &amp; Platform</th>
                   <th className="py-3.5 px-4">Pitch Deck (Private)</th>
+                  <th className="py-3.5 px-4">Tanggal Daftar</th>
                   <th className="py-3.5 px-4">Status</th>
-                  <th className="py-3.5 px-4 text-right">Aksi Kurasi</th>
+                  <th className="py-3.5 px-4 text-right">Aksi</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#252b3b] text-xs">
@@ -267,13 +262,6 @@ export default function AdminSubmissionsPage() {
                     key={item.id}
                     className="hover:bg-white/[0.02] transition-colors"
                   >
-                    <td className="py-4 px-4 font-mono font-bold text-[#F3E000] whitespace-nowrap">
-                      {item.registrationCode}
-                      <div className="text-[10px] font-sans font-normal text-gray-500 mt-0.5">
-                        {new Date(item.createdAt).toLocaleDateString("id-ID")}
-                      </div>
-                    </td>
-
                     <td className="py-4 px-4">
                       <div className="font-bold text-white text-sm">
                         {item.startupName}
@@ -322,6 +310,14 @@ export default function AdminSubmissionsPage() {
                           {item.pitchdeckFileName}
                         </span>
                       </Link>
+                    </td>
+
+                    <td className="py-4 px-4 text-gray-400 whitespace-nowrap">
+                      {new Date(item.createdAt).toLocaleDateString("id-ID", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
                     </td>
 
                     <td className="py-4 px-4 whitespace-nowrap">
@@ -386,9 +382,8 @@ export default function AdminSubmissionsPage() {
               </h3>
               <p className="text-xs text-gray-300 leading-relaxed mb-6">
                 Anda yakin ingin menghapus pendaftaran{" "}
-                <strong className="text-white">{deleteTarget.startupName}</strong> (
-                <code className="text-[#F3E000]">{deleteTarget.registrationCode}</code>
-                ) beserta dokumen Pitch Deck privatnya? Tindakan ini tidak dapat dibatalkan.
+                <strong className="text-white">{deleteTarget.startupName}</strong>{" "}
+                beserta dokumen Pitch Deck privatnya? Tindakan ini tidak dapat dibatalkan.
               </p>
               <div className="flex items-center justify-end gap-3">
                 <button

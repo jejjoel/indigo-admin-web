@@ -49,10 +49,10 @@ export default function AdminInboxPage() {
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-2.5">
               <Inbox className="w-7 h-7 text-[#E71C34]" />
-              Kotak Masuk Kolaborasi (/contact)
+              Kotak Masuk Pesan &amp; Kolaborasi
             </h1>
             <p className="text-xs sm:text-sm text-gray-400 mt-1">
-              Daftar pesan kemitraan &amp; pertanyaan umum yang dikirim dari halaman /contact pada website publik.
+              Daftar pesan kemitraan &amp; pertanyaan umum yang dikirim oleh pengunjung melalui formulir kontak website publik.
             </p>
           </div>
 
@@ -122,7 +122,7 @@ export default function AdminInboxPage() {
 
           {!loading && messages.length === 0 && (
             <div className="bg-[#141721] border border-[#252b3b] rounded-2xl p-12 text-center text-gray-500 text-sm">
-              Belum ada pesan masuk dari halaman /contact.
+              Belum ada pesan masuk di kotak masuk.
             </div>
           )}
         </div>

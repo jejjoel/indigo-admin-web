@@ -200,11 +200,11 @@ export default function AdminDashboardPage() {
                 >
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-[#F3E000]">
-                        {sub.registrationCode}
-                      </span>
                       <span className="text-sm font-bold text-white">
                         {sub.startupName}
+                      </span>
+                      <span className="text-[11px] text-gray-500">
+                        • {new Date(sub.createdAt).toLocaleDateString("id-ID")}
                       </span>
                     </div>
                     <p className="text-xs text-gray-400 mt-0.5">

@@ -15,7 +15,7 @@ import {
 const MENU_ITEMS = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Submissions", href: "/submissions", icon: FolderKanban },
-  { label: "Inbox (/contact)", href: "/inbox", icon: Inbox },
+  { label: "Inbox", href: "/inbox", icon: Inbox },
 ];
 
 export default function AdminHeader() {
