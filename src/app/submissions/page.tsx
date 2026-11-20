@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import AdminHeader from "@/components/AdminHeader";
+import AdminAuthGuard from "@/components/AdminAuthGuard";
 import { SubmissionData, SubmissionStatus } from "@/types/admin";
 import {
   Search,
@@ -160,8 +161,9 @@ export default function AdminSubmissionsPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0c10] text-white">
-      <AdminHeader />
+    <AdminAuthGuard>
+      <div className="min-h-screen flex flex-col bg-[#0b0c10] text-white">
+        <AdminHeader />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
@@ -406,5 +408,6 @@ export default function AdminSubmissionsPage() {
         )}
       </main>
     </div>
+    </AdminAuthGuard>
   );
 }

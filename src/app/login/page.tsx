@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   ShieldAlert,
@@ -19,6 +19,13 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
+  useEffect(() => {
+    // Jika masih dalam tab/sesi yang sama dan sudah login, langsung ke dashboard
+    if (sessionStorage.getItem("indigo_admin_session") === "true") {
+      router.replace("/dashboard");
+    }
+  }, [router]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg(null);
@@ -36,7 +43,10 @@ export default function AdminLoginPage() {
         throw new Error(result.error || "Gagal masuk ke portal admin.");
       }
 
-      localStorage.setItem("indigo_admin_logged_in", "true");
+      // Gunakan sessionStorage: aktif selama tab masih terbuka.
+      // Begitu tab/browser ditutup, sesi otomatis berakhir dan wajib login lagi.
+      sessionStorage.setItem("indigo_admin_session", "true");
+      localStorage.removeItem("indigo_admin_logged_in");
       router.push("/dashboard");
     } catch (err: unknown) {
       setErrorMsg(err instanceof Error ? err.message : "Terjadi kesalahan.");

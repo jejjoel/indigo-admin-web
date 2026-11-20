@@ -24,8 +24,9 @@ export default function AdminHeader() {
 
   const handleLogout = async () => {
     await fetch("/api/auth", { method: "DELETE" });
+    sessionStorage.removeItem("indigo_admin_session");
     localStorage.removeItem("indigo_admin_logged_in");
-    router.push("/login");
+    router.replace("/login");
   };
 
   return (

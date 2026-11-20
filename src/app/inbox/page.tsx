@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import AdminHeader from "@/components/AdminHeader";
+import AdminAuthGuard from "@/components/AdminAuthGuard";
 import { ContactMessageData } from "@/types/admin";
 import { Inbox, Mail, CheckCircle2, Clock, RefreshCw } from "lucide-react";
 
@@ -41,8 +42,9 @@ export default function AdminInboxPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0c10] text-white">
-      <AdminHeader />
+    <AdminAuthGuard>
+      <div className="min-h-screen flex flex-col bg-[#0b0c10] text-white">
+        <AdminHeader />
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between mb-6">
@@ -128,5 +130,6 @@ export default function AdminInboxPage() {
         </div>
       </main>
     </div>
+    </AdminAuthGuard>
   );
 }

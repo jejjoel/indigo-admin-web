@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import AdminHeader from "@/components/AdminHeader";
+import AdminAuthGuard from "@/components/AdminAuthGuard";
 import { SubmissionData } from "@/types/admin";
 import {
   Users,
@@ -56,8 +57,9 @@ export default function AdminDashboardPage() {
   const eligibleCaptable = submissions.filter((s) => s.captable === ">= 65%").length;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0c10] text-white">
-      <AdminHeader />
+    <AdminAuthGuard>
+      <div className="min-h-screen flex flex-col bg-[#0b0c10] text-white">
+        <AdminHeader />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Top bar */}
@@ -242,5 +244,6 @@ export default function AdminDashboardPage() {
         </div>
       </main>
     </div>
+    </AdminAuthGuard>
   );
 }

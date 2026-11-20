@@ -4,6 +4,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import AdminHeader from "@/components/AdminHeader";
+import AdminAuthGuard from "@/components/AdminAuthGuard";
 import { SubmissionData, SubmissionStatus } from "@/types/admin";
 import {
   ArrowLeft,
@@ -29,15 +30,17 @@ const STATUS_LIST: SubmissionStatus[] = [
 
 export default function SubmissionDetailReviewPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center bg-[#0b0c10] text-white">
-          <Loader2 className="w-8 h-8 animate-spin text-[#E71C34]" />
-        </div>
-      }
-    >
-      <SubmissionDetailContent />
-    </Suspense>
+    <AdminAuthGuard>
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center bg-[#0b0c10] text-white">
+            <Loader2 className="w-8 h-8 animate-spin text-[#E71C34]" />
+          </div>
+        }
+      >
+        <SubmissionDetailContent />
+      </Suspense>
+    </AdminAuthGuard>
   );
 }
 

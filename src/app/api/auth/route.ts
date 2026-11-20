@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       path: "/",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24, // 24 jam
+      // Tanpa maxAge: otomatis menjadi Session Cookie (berakhir saat browser ditutup)
     });
 
     return res;
